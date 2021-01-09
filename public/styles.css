@@ -28,6 +28,10 @@ ul li:first-child {
   margin-top: 3rem;
 }
 
+#name {
+  overflow: hidden;
+}
+
 .fullscreen {
   height: 100%;
   width: 100vw;
