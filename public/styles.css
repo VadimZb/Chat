@@ -8,6 +8,11 @@ body {
   font-size: 1.6rem;
 }
 
+html,
+body {
+  height: 100%;
+}
+
 ul {
   list-style-type: none;
   -webkit-margin-before: 0;
@@ -24,7 +29,7 @@ ul li:first-child {
 }
 
 .fullscreen {
-  height: 100vh;
+  height: 100%;
   width: 100vw;
 }
 

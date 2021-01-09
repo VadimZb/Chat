@@ -13,7 +13,7 @@
 
 <body>
     <div class="fullscreen column center" id="chat" style="display: none;">
-        <div class="absolute blue-bg center stretch-width">
+        <div class="absolute blue-bg center stretch-width shadow">
             <h1 class="white bold"><span id="online">0</span> online</h1>
         </div>
         <ul class="scrollable stretch-height stretch-width" id="messages">
@@ -22,10 +22,10 @@
                 <span class="gray">Welcome <span id="info">Username</span></span>
             </li>
         </ul>
-        <div class="center row white-bg stretch-width h10rem">
+        <div class="center row white-bg stretch-width h10rem shadow">
             <input type="text" class="stretch-width shadow input transition margin-horizontal big padding"
                 id="inputField" autocomplete="off">
-            <button class="hover shadowbutton transition margin-horizontal big padding white-bg"
+            <button class="hover shadow button transition margin-horizontal big padding white-bg"
                 onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
         </div>
     </div>

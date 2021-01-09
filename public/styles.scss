@@ -8,6 +8,11 @@ body {
     font-size: 1.6rem;
 }
 
+html,
+body {
+    height: 100%;
+}
+
 ul {
     list-style-type: none;
     margin-block-start: 0;
@@ -22,7 +27,7 @@ ul {
 
 // LAYOUT
 .fullscreen {
-    height: 100vh;
+    height: 100%;
     width: 100vw;
 }
 
