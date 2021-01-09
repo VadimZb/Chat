@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="https://kit.fontawesome.com/67609500f8.js" crossorigin="anonymous" defer></script>
+    <script src="/socket.io/socket.io.js" defer></script>
+    <script src="/static/main.js" defer></script>
+</head>
+
+<body>
+    <div class="fullscreen column center" id="chat" style="display: none;">
+        <div class="absolute blue-bg center stretch-width">
+            <h1 class="white bold"><span id="online">0</span> online</h1>
+        </div>
+        <ul class="scrollable stretch-height stretch-width" id="messages">
+            <li class="margin-vertical margin-horizontal padding align-center">
+                <i class="fas fa-door-open"></i>
+                <span class="gray">Welcome <span id="info">Username</span></span>
+            </li>
+        </ul>
+        <div class="center row white-bg stretch-width h10rem">
+            <input type="text" class="stretch-width shadow input transition margin-horizontal big padding"
+                id="inputField" autocomplete="off">
+            <button class="hover shadowbutton transition margin-horizontal big padding" onclick="sendMessage()"><i
+                    class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <div class="center fullscreen column blue-bg " id="name">
+        <input type="text"
+            class="align-center stretch-width shadow input bold transition margin-horizontal biggest padding margin-vertical"
+            placeholder="Your name" spellcheck="false" id="username" autocomplete="off">
+        <button class="hover shadow button transition margin-horizontal margin-vertical big padding big
+            " onclick="enterChat()">Join</button>
+    </div>
+</body>
+
+</html>
