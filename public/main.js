@@ -4,6 +4,12 @@ const $inputField = document.querySelector("#inputField");
 const $username = document.querySelector("#username");
 const $online = document.querySelector("#online");
 
+window.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+        sendMessage();
+    }
+});
+
 function generateMessage(type, username, text) {
     function generateUsername(username) {
         const element = document.createElement("span");
