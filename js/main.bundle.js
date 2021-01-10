@@ -15,7 +15,7 @@ window.addEventListener("keypress", function (e) {
 function generateMessage(type, username, text) {
     function generateUsername(username) {
         var element = document.createElement("span");
-        element.classList.add("bold", "colon", "big", "space-left");
+        element.classList.add("bold", "big", "space-left");
         element.textContent = username;
         return element;
     }
@@ -96,20 +96,47 @@ function generateMessage(type, username, text) {
         return li;
     }
 
+    function generateDiv(type, role) {
+        var element = document.createElement("div");
+        if (role === "text") {
+            element.classList.add("padding", "border-top");
+
+            if (type === "socket") {
+                element.classList.add("lightest-green-bg");
+            } else {
+                element.classList.add("lightest-bg");
+            }
+        } else if (role === "info") {
+            element.classList.add("margin-horizontal", "margin-vertical");
+        }
+
+        return element;
+    }
+
     function generateLi(type, username, text) {
         var li = document.createElement("li");
         var spanIcon = generateIcon(type);
         var spanUsername = generateUsername(username);
         var spanText = generateText(text);
         var spanDate = generateDate();
+        var divInfo = generateDiv(type, "info");
+        var divText = generateDiv(type, "text");
 
-        var _arr2 = [spanIcon, spanUsername, spanText, spanDate];
+        var _arr2 = [spanIcon, spanUsername, spanDate];
         for (var _i2 = 0; _i2 < _arr2.length; _i2++) {
-            var span = _arr2[_i2];
-            li.appendChild(span);
+            var infoData = _arr2[_i2];
+            divInfo.appendChild(infoData);
         }
 
-        li.classList.add("margin-vertical", "margin-horizontal", "border", "padding");
+        divText.appendChild(spanText);
+
+        var _arr3 = [divInfo, divText];
+        for (var _i3 = 0; _i3 < _arr3.length; _i3++) {
+            var div = _arr3[_i3];
+            li.appendChild(div);
+        }
+
+        li.classList.add("margin-vertical", "margin-horizontal", "border");
 
         if (type === "io") {
             li.classList.add("light-bg");

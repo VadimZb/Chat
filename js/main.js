@@ -13,7 +13,7 @@ window.addEventListener("keypress", (e) => {
 function generateMessage(type, username, text) {
     function generateUsername(username) {
         const element = document.createElement("span");
-        element.classList.add("bold", "colon", "big", "space-left");
+        element.classList.add("bold", "big", "space-left");
         element.textContent = username;
         return element;
     }
@@ -97,23 +97,43 @@ function generateMessage(type, username, text) {
         return li;
     }
 
+    function generateDiv(type, role) {
+        const element = document.createElement("div");
+        if (role === "text") {
+            element.classList.add("padding", "border-top");
+
+            if (type === "socket") {
+                element.classList.add("lightest-green-bg");
+            } else {
+                element.classList.add("lightest-bg");
+            }
+        } else if (role === "info") {
+            element.classList.add("margin-horizontal", "margin-vertical");
+        }
+
+        return element;
+    }
+
     function generateLi(type, username, text) {
         const li = document.createElement("li");
         const spanIcon = generateIcon(type);
         const spanUsername = generateUsername(username);
         const spanText = generateText(text);
         const spanDate = generateDate();
+        const divInfo = generateDiv(type, "info");
+        const divText = generateDiv(type, "text");
 
-        for (let span of [spanIcon, spanUsername, spanText, spanDate]) {
-            li.appendChild(span);
+        for (let infoData of [spanIcon, spanUsername, spanDate]) {
+            divInfo.appendChild(infoData);
         }
 
-        li.classList.add(
-            "margin-vertical",
-            "margin-horizontal",
-            "border",
-            "padding"
-        );
+        divText.appendChild(spanText);
+
+        for (let div of [divInfo, divText]) {
+            li.appendChild(div);
+        }
+
+        li.classList.add("margin-vertical", "margin-horizontal", "border");
 
         if (type === "io") {
             li.classList.add("light-bg");

@@ -89,6 +89,10 @@ ul li:first-child {
   padding: 0.7rem;
 }
 
+.border-top {
+  border-top: 2px solid lightgray;
+}
+
 .border {
   border: 2px solid lightgray;
 }
@@ -116,11 +120,19 @@ ul li:first-child {
 }
 
 .light-bg {
+  background-color: rgba(223, 223, 223, 0.9);
+}
+
+.lightest-bg {
   background-color: rgba(245, 245, 245, 0.9);
 }
 
 .light-green-bg {
-  background-color: rgba(219, 253, 199, 0.9);
+  background-color: rgba(204, 255, 174, 0.9);
+}
+
+.lightest-green-bg {
+  background-color: rgba(245, 251, 240, 0.774);
 }
 
 .white {
