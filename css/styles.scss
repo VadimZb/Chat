@@ -195,6 +195,21 @@ ul {
 }
 
 // ANIMATIONS
+
+@keyframes smooth_appearance {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.animated {
+    animation: 0.2s linear 0s 1 alternate smooth_appearance;
+}
+
 .transition {
     transition: 0.2s;
 }

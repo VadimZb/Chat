@@ -85,7 +85,7 @@ function generateMessage(type, username, text) {
         var icon = generateIcon("system");
 
         var li = document.createElement("li");
-        li.classList.add("margin-vertical", "margin-horizontal", "padding", "align-center");
+        li.classList.add("margin-vertical", "margin-horizontal", "padding", "align-center", "animated");
 
         var _arr = [icon, span];
         for (var _i = 0; _i < _arr.length; _i++) {
@@ -136,7 +136,7 @@ function generateMessage(type, username, text) {
             li.appendChild(div);
         }
 
-        li.classList.add("margin-vertical", "margin-horizontal", "border");
+        li.classList.add("margin-vertical", "margin-horizontal", "border", "animated");
 
         if (type === "io") {
             li.classList.add("light-bg");

@@ -87,7 +87,8 @@ function generateMessage(type, username, text) {
             "margin-vertical",
             "margin-horizontal",
             "padding",
-            "align-center"
+            "align-center",
+            "animated"
         );
 
         for (let element of [icon, span]) {
@@ -133,7 +134,12 @@ function generateMessage(type, username, text) {
             li.appendChild(div);
         }
 
-        li.classList.add("margin-vertical", "margin-horizontal", "border");
+        li.classList.add(
+            "margin-vertical",
+            "margin-horizontal",
+            "border",
+            "animated"
+        );
 
         if (type === "io") {
             li.classList.add("light-bg");
