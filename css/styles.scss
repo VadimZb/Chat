@@ -21,7 +21,7 @@ ul {
     word-break: break-word;
 
     & li:first-child {
-        margin-top: 3rem;
+        margin-top: 2rem;
     }
 }
 
@@ -172,6 +172,10 @@ ul {
 
 .hover:hover {
     transform: scale(1.05);
+}
+
+.nofocus:focus {
+    border: 1px solid transparent;
 }
 
 // SHADOWS

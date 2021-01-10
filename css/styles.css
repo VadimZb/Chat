@@ -25,7 +25,7 @@ ul {
 }
 
 ul li:first-child {
-  margin-top: 3rem;
+  margin-top: 2rem;
 }
 
 #name {
@@ -183,6 +183,10 @@ ul li:first-child {
 .hover:hover {
   -webkit-transform: scale(1.05);
           transform: scale(1.05);
+}
+
+.nofocus:focus {
+  border: 1px solid transparent;
 }
 
 .shadow {

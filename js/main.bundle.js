@@ -113,14 +113,19 @@ function generateMessage(type, username, text) {
 
 function enterChat() {
     if ($username.value.replace(/\s/g, "").length) {
-        var $namePage = document.getElementById("name");
-        var $chatPage = document.getElementById("chat");
-        var $header = document.getElementById("header");
-        var $info = document.getElementById("info");
-        $info.textContent = $username.value;
-        socket.emit("name given", $username.value);
-        $namePage.style.display = "none";
-        $chatPage.style.display = "flex";
+        if ($username.value.length > 20) {
+            alert("Username should less than 20 characters.");
+            $username.focus();
+        } else {
+            var $namePage = document.getElementById("name");
+            var $chatPage = document.getElementById("chat");
+            var $header = document.getElementById("header");
+            var $info = document.getElementById("info");
+            $info.textContent = $username.value;
+            socket.emit("name given", $username.value);
+            $namePage.style.display = "none";
+            $chatPage.style.display = "flex";
+        }
     } else {
         $username.value = "";
         $username.focus();
