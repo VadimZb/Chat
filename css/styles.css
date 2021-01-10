@@ -157,6 +157,14 @@ ul li:first-child {
   word-wrap: pre;
 }
 
+.nocopy {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
 .align-center {
   text-align: center;
 }
@@ -173,6 +181,15 @@ ul li:first-child {
 
 .input:focus {
   border: 1px solid gray;
+}
+
+.a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+.a:visited {
+  color: none;
 }
 
 .transition {

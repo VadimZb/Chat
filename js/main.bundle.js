@@ -20,10 +20,26 @@ function generateMessage(type, username, text) {
         return element;
     }
 
+    function generateLink(text) {
+        var element = document.createElement("a");
+        element.setAttribute("href", text);
+        element.setAttribute("target", "_blank");
+        element.classList.add("a", "bold");
+        element.textContent = text;
+        return element;
+    }
+
     function generateText(text) {
         var element = document.createElement("span");
         element.classList.add("big");
-        element.textContent = text;
+        var expression = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/;
+        var url_regex = new RegExp(expression);
+        if (url_regex.test(text)) {
+            element.appendChild(generateLink(text));
+        } else {
+            element.textContent = text;
+        }
+
         return element;
     }
 
@@ -43,7 +59,7 @@ function generateMessage(type, username, text) {
 
         var time = hours + ":" + minutes;
         span.textContent = time;
-        span.classList.add("gray", "small", "space-left");
+        span.classList.add("gray", "small", "space-left", "nocopy");
         return span;
     }
 
@@ -63,7 +79,7 @@ function generateMessage(type, username, text) {
 
     function generateSystemMsg(username, text) {
         var span = document.createElement("span");
-        span.classList.add("gray", "space-left");
+        span.classList.add("gray", "space-left", "nocopy");
         span.textContent = username + " " + text;
 
         var icon = generateIcon("system");
