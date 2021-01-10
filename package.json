@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "babel": "babel --presets es2015 js/main.js -o js/main.bundle.js",
+    "minify": "minify css/styles.css > public/styles.min.css && minify js/main.bundle.js > public/main.min.js",
+    "start": "npm run babel && npm run minify && node server.js"
   },
   "keywords": [],
   "author": "",
@@ -13,5 +15,11 @@
   "dependencies": {
     "express": "^4.17.1",
     "socket.io": "^3.0.5"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-es2015": "^6.24.1",
+    "minify": "^6.0.1"
   }
 }
