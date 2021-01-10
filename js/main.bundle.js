@@ -12,6 +12,8 @@ window.addEventListener("keypress", function (e) {
     }
 });
 
+var lastUser = "";
+
 function generateMessage(type, username, text) {
     function generateUsername(username) {
         var element = document.createElement("span");
@@ -96,10 +98,13 @@ function generateMessage(type, username, text) {
         return li;
     }
 
-    function generateDiv(type, role) {
+    function generateDiv(type, role, border) {
         var element = document.createElement("div");
         if (role === "text") {
-            element.classList.add("padding", "border-top");
+            element.classList.add("padding");
+            if (border) {
+                element.classList.add("border-top");
+            }
 
             if (type === "socket") {
                 element.classList.add("lightest-green-bg");
@@ -115,35 +120,53 @@ function generateMessage(type, username, text) {
 
     function generateLi(type, username, text) {
         var li = document.createElement("li");
-        var spanIcon = generateIcon(type);
-        var spanUsername = generateUsername(username);
-        var spanText = generateText(text);
-        var spanDate = generateDate();
-        var divInfo = generateDiv(type, "info");
-        var divText = generateDiv(type, "text");
 
-        var _arr2 = [spanIcon, spanUsername, spanDate];
-        for (var _i2 = 0; _i2 < _arr2.length; _i2++) {
-            var infoData = _arr2[_i2];
-            divInfo.appendChild(infoData);
-        }
+        console.log(username, lastUser);
+        if (username === lastUser) {
+            var spanText = generateText(text);
+            var divText = generateDiv(type, "text");
 
-        divText.appendChild(spanText);
+            divText.appendChild(spanText);
+            li.appendChild(divText);
 
-        var _arr3 = [divInfo, divText];
-        for (var _i3 = 0; _i3 < _arr3.length; _i3++) {
-            var div = _arr3[_i3];
-            li.appendChild(div);
-        }
+            li.classList.add("margin-vertical", "margin-horizontal", "border", "animated");
 
-        li.classList.add("margin-vertical", "margin-horizontal", "border", "animated");
-
-        if (type === "io") {
-            li.classList.add("light-bg");
+            if (type === "io") {
+                li.classList.add("lightest-bg");
+            } else {
+                li.classList.add("lightest-green-bg");
+            }
         } else {
-            li.classList.add("light-green-bg");
-        }
+            var spanIcon = generateIcon(type);
+            var spanUsername = generateUsername(username);
+            var _spanText = generateText(text);
+            var spanDate = generateDate();
+            var divInfo = generateDiv(type, "info");
+            var _divText = generateDiv(type, "text");
 
+            var _arr2 = [spanIcon, spanUsername, spanDate];
+            for (var _i2 = 0; _i2 < _arr2.length; _i2++) {
+                var infoData = _arr2[_i2];
+                divInfo.appendChild(infoData);
+            }
+
+            _divText.appendChild(_spanText);
+
+            var _arr3 = [divInfo, _divText];
+            for (var _i3 = 0; _i3 < _arr3.length; _i3++) {
+                var div = _arr3[_i3];
+                li.appendChild(div);
+            }
+
+            li.classList.add("margin-vertical", "margin-horizontal", "border", "animated");
+
+            if (type === "io") {
+                li.classList.add("light-bg");
+            } else {
+                li.classList.add("light-green-bg");
+            }
+        }
+        lastUser = username;
         return li;
     }
 

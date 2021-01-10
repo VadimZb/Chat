@@ -10,6 +10,8 @@ window.addEventListener("keypress", (e) => {
     }
 });
 
+let lastUser = "";
+
 function generateMessage(type, username, text) {
     function generateUsername(username) {
         const element = document.createElement("span");
@@ -98,10 +100,13 @@ function generateMessage(type, username, text) {
         return li;
     }
 
-    function generateDiv(type, role) {
+    function generateDiv(type, role, border) {
         const element = document.createElement("div");
         if (role === "text") {
-            element.classList.add("padding", "border-top");
+            element.classList.add("padding");
+            if (border) {
+                element.classList.add("border-top");
+            }
 
             if (type === "socket") {
                 element.classList.add("lightest-green-bg");
@@ -117,36 +122,59 @@ function generateMessage(type, username, text) {
 
     function generateLi(type, username, text) {
         const li = document.createElement("li");
-        const spanIcon = generateIcon(type);
-        const spanUsername = generateUsername(username);
-        const spanText = generateText(text);
-        const spanDate = generateDate();
-        const divInfo = generateDiv(type, "info");
-        const divText = generateDiv(type, "text");
 
-        for (let infoData of [spanIcon, spanUsername, spanDate]) {
-            divInfo.appendChild(infoData);
-        }
+        console.log(username, lastUser);
+        if (username === lastUser) {
+            const spanText = generateText(text);
+            const divText = generateDiv(type, "text");
 
-        divText.appendChild(spanText);
+            divText.appendChild(spanText);
+            li.appendChild(divText);
 
-        for (let div of [divInfo, divText]) {
-            li.appendChild(div);
-        }
+            li.classList.add(
+                "margin-vertical",
+                "margin-horizontal",
+                "border",
+                "animated"
+            );
 
-        li.classList.add(
-            "margin-vertical",
-            "margin-horizontal",
-            "border",
-            "animated"
-        );
-
-        if (type === "io") {
-            li.classList.add("light-bg");
+            if (type === "io") {
+                li.classList.add("lightest-bg");
+            } else {
+                li.classList.add("lightest-green-bg");
+            }
         } else {
-            li.classList.add("light-green-bg");
-        }
+            const spanIcon = generateIcon(type);
+            const spanUsername = generateUsername(username);
+            const spanText = generateText(text);
+            const spanDate = generateDate();
+            const divInfo = generateDiv(type, "info");
+            const divText = generateDiv(type, "text");
 
+            for (let infoData of [spanIcon, spanUsername, spanDate]) {
+                divInfo.appendChild(infoData);
+            }
+
+            divText.appendChild(spanText);
+
+            for (let div of [divInfo, divText]) {
+                li.appendChild(div);
+            }
+
+            li.classList.add(
+                "margin-vertical",
+                "margin-horizontal",
+                "border",
+                "animated"
+            );
+
+            if (type === "io") {
+                li.classList.add("light-bg");
+            } else {
+                li.classList.add("light-green-bg");
+            }
+        }
+        lastUser = username;
         return li;
     }
 
