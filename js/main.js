@@ -10,6 +10,16 @@ window.addEventListener("keypress", (e) => {
     }
 });
 
+console.log(
+    "%cGitHub Repo",
+    "display: inline-block ; background-color: gold ; color: black ; font-weight: bold ; padding: 3px 7px 3px 7px ; border-radius: 3px 3px 3px 3px ;"
+);
+
+console.log(
+    "%chttps://github.com/VadimZb/Chat",
+    "font-weight: bold; color: #007bff;"
+);
+
 let lastUser = "";
 
 function generateMessage(type, username, text) {
@@ -201,8 +211,6 @@ function enterChat() {
             socket.emit("name given", $username.value);
             $namePage.style.display = "none";
             $chatPage.style.display = "flex";
-            console.log(usersArray);
-            console.log($username.value);
         }
     } else {
         $username.value = "";
@@ -252,6 +260,5 @@ socket.on("refresh online", (online) => {
 
 let usersArray = [];
 socket.on("send blacklist", (users) => {
-    console.log(users);
     usersArray = users;
 });

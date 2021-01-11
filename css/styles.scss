@@ -19,6 +19,7 @@ ul {
     margin-block-end: 0;
     padding-inline-start: 0;
     word-break: break-word;
+    min-height: 25rem;
 
     & li:first-child {
         margin-top: 2rem;
