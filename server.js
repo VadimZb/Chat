@@ -12,16 +12,18 @@ app.get("/", (req, res) => {
 });
 
 let connectionCounter = 0;
+let users = [];
 io.on("connection", (socket) => {
-    let username = "";
-
+    io.emit("send blacklist", users);
     socket.on("name given", (username) => {
-        username = username;
         connectionCounter++;
+        users.push(username);
+        io.emit("send blacklist", users);
         socket.broadcast.emit("user joined", username);
         io.emit("refresh online", connectionCounter);
 
         socket.on("disconnect", () => {
+            users.splice(users.indexOf(username), 1);
             socket.broadcast.emit("user left", username);
             connectionCounter--;
             io.emit("refresh online", connectionCounter);

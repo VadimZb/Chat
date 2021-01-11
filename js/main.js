@@ -123,7 +123,6 @@ function generateMessage(type, username, text) {
     function generateLi(type, username, text) {
         const li = document.createElement("li");
 
-        console.log(username, lastUser);
         if (username === lastUser) {
             const spanText = generateText(text);
             const divText = generateDiv(type, "text");
@@ -190,6 +189,9 @@ function enterChat() {
         if ($username.value.length > 20) {
             alert("Username should less than 20 characters.");
             $username.focus();
+        } else if (usersArray.includes($username.value)) {
+            alert("Username is taken");
+            $username.focus();
         } else {
             const $namePage = document.getElementById("name");
             const $chatPage = document.getElementById("chat");
@@ -199,6 +201,8 @@ function enterChat() {
             socket.emit("name given", $username.value);
             $namePage.style.display = "none";
             $chatPage.style.display = "flex";
+            console.log(usersArray);
+            console.log($username.value);
         }
     } else {
         $username.value = "";
@@ -244,4 +248,10 @@ socket.on("new message", (username, text) => {
 
 socket.on("refresh online", (online) => {
     $online.textContent = online;
+});
+
+let usersArray = [];
+socket.on("send blacklist", (users) => {
+    console.log(users);
+    usersArray = users;
 });
