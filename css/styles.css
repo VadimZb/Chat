@@ -22,7 +22,6 @@ ul {
   -webkit-padding-start: 0;
           padding-inline-start: 0;
   word-break: break-word;
-  min-height: 25rem;
 }
 
 ul li:first-child {

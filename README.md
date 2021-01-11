@@ -9,6 +9,8 @@ App is deployed on a heroku and can be visited by clicking **[here](https://fate
 
 ### Quick overview
 
-> Screenshot
+> Some screenshots
 
-![](./photos/Screenshot2.png)
+![](./photos/screenshot2.png)
+![](./photos/screenshot1.png)
+![](./photos/screenshot3.png)
